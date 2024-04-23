@@ -102,3 +102,26 @@ pre.codeblock {
   text-align: center;
   background: var(--color-main);
 }
+
+.video-container {
+  height: 100px;
+  width: 300px;
+  position: relative;
+}
+
+.video-container video {
+width: 100%;
+height: 50%;
+position: absolute;
+object-fit: cover;
+z-index: 0;
+}
+
+/* Just styling the content of the div, the *magic* in the previous rules */
+.video-container .caption {
+z-index: 1;
+position: relative;
+text-align: center;
+color: #dc0000;
+padding: 10px;
+}
