@@ -31,13 +31,20 @@
           </div>
           {% endfor %}
           {{checkboxform.as_p}}
-          <div class="auth__actions">
-            <input class="btn btn--sub btn--lg" type="submit" value="Sign Up" />
-          </div>
-          <p class='color: red;'>
+         
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="user_agreement" name="user_agreement">
+            <label class="form-check-label" for="user_agreement">I agree with "Freelance Bazar's User Agreement" for 
+              <a href="{%url "user-agreement" 'Client' %}"  target="_blank">Clients</a> and <a href="{%url "user-agreement" 'Freelance'%}"  target="_blank">Freelancers</a>
+            </label>
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" id='submit-btn' type="submit" value="Sign Up" disabled/>
+        </div>
+          {% comment %} <p class='color: red;'>
             By creating the user account you agree and sign "Freelance Bazar's User Agreement" for 
             <a href="{%url "user-agreement" 'Client' %}"  target="_blank">Clients</a> and <a href="{%url "user-agreement" 'Freelance'%}"  target="_blank">Freelancers</a>
-          </p>  
+          </p>   {% endcomment %}
         </form>
         <div class="auth__alternative">
           <p>Already have an Account?</p>
@@ -99,5 +106,11 @@
     </div>
 
 {% endif %}
+
+<script>
+  document.getElementById('user_agreement').addEventListener('change', function() {
+    document.getElementById('submit-btn').disabled = !this.checked;});
+</script>
+
 
 {% endblock content %}

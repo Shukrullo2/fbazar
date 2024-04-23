@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-^e9k4)^ix$_!4)i8o(ifq&suu+-hnhsk92eeo(t1=1or@6*q-@
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -100,12 +100,19 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':  'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'navoiy123',
-        'HOST': 'freelance.cbzuhilfe8pb.eu-north-1.rds.amazonaws.com',
+        'PASSWORD': '246Shukrullo',
+        'HOST': 'database-1.cla2g0smg5j2.eu-central-1.rds.amazonaws.com',
         'PORT': '5432',
 
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "db.sqlite3",
+#     }
+# }
 
 
 
@@ -175,8 +182,8 @@ django_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
-AWS_S3_ACCESS_KEY_ID = 'AKIA2T4TZVEZHRZBT57K'
-AWS_S3_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'fbazar'
+AWS_S3_ACCESS_KEY_ID = 'AKIAZI2LFXLF2YEJWM5S'
+AWS_S3_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'fbazaraaa'
 AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
