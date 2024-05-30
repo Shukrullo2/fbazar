@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^e9k4)^ix$_!4)i8o(ifq&suu+-hnhsk92eeo(t1=1or@6*q-@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 
@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
     'jobs.apps.JobsConfig',
-    'storages'
+    'storages',
+    'captcha',
+
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ MIDDLEWARE = [
 
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app','https://*.127.0.0.1', 'https://web-production-b43f.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1', 'https://freelance.wiut.uz']
 
 
 ROOT_URLCONF = 'devsearch.urls'
@@ -95,24 +97,24 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '246Shukrullo',
-        'HOST': 'database-1.cla2g0smg5j2.eu-central-1.rds.amazonaws.com',
-        'PORT': '5432',
-
-    }
-}
-
 # DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": "db.sqlite3",
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':  'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '246Shukrullo',
+#         'HOST': 'database-1.cla2g0smg5j2.eu-central-1.rds.amazonaws.com',
+#         'PORT': '5432',
+
 #     }
 # }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+    }
+}
 
 
 
@@ -180,10 +182,24 @@ django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+# CAPTCHA_IMAGE_SIZE = (30, 10)  # Width, Height
+
+# # Other optional configurations
+# CAPTCHA_FONT_SIZE = 40
+# CAPTCHA_LETTER_ROTATION = (-35, 35)
+# CAPTCHA_BACKGROUND_COLOR = '#ffffff'
+# CAPTCHA_FOREGROUND_COLOR = '#000000'
+# CAPTCHA_NOISE_FUNCTIONS = (
+#     'captcha.helpers.noise_arcs',
+#     'captcha.helpers.noise_dots',
+# )
+# CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'  # Example: simple math challenge
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
-AWS_S3_ACCESS_KEY_ID = 'AKIAZI2LFXLF2YEJWM5S'
-AWS_S3_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'fbazaraaa'
-AWS_S3_FILE_OVERWRITE = False
-AWS_QUERYSTRING_AUTH = False
+# DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+# AWS_S3_ACCESS_KEY_ID = 'AKIAZI2LFXLF2YEJWM5S'
+# AWS_S3_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'fbazaraaa'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_QUERYSTRING_AUTH = False

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Profile, Skill, Message
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm, CheckboxForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm, CheckboxForm, LoginForm
 from django.contrib import messages
 from .utils import searchProfiles, paginateProfiles
 from django.contrib.auth.models import User
@@ -16,35 +16,70 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator as account_activation_token
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode
+from django.utils.translation import gettext_lazy as _
 
 # Create your views here.
 
 
-
 def loginUser(request):
     page = 'login'
-    context = {'page': page}
-
+    form = LoginForm()
+    context = {'page': page, 'form': form}
     if request.user.is_authenticated:
         return redirect('profiles')
 
     if request.method == 'POST':
-        username = request.POST['username'].lower()
-        password = request.POST['password']
+        form = LoginForm(request.POST)
+        # username = request.POST['username'].lower()
+        # password = request.POST['password']     
+        # print(username, password)
+        # Validate the form: the captcha field will automatically
+        # check the input
+        if form.is_valid():
+            username = request.POST['username'].lower()
+            password = request.POST['password']      
+            print("username, password")
+            try:
+                user = User.objects.get(username=username)
+            except:
+                messages.error(request, "Username doesnot exist")
 
-        try:
-            user = User.objects.get(username=username)
-        except:
-            messages.error(request, "username doesnot exist")
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(request.GET['next'] if 'next' in request.GET else 'account')
+            else:
+                messages.error(request, "Incorrect username or password")
+        else: 
+            messages.error(request, form.errors)
+            print(form.errors)
 
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            print("redirect")
-            return redirect(request.GET['next'] if 'next' in request.GET else 'account')
-        else:
-            messages.error(request, "username doesnot exist")
     return render(request, 'login_register.html', context)
+
+# def loginUser(request):
+#     page = 'login'
+#     context = {'page': page}
+
+#     if request.user.is_authenticated:
+#         return redirect('profiles')
+
+#     if request.method == 'POST':
+#         username = request.POST['username'].lower()
+#         password = request.POST['password']
+        
+#         try:
+#             user = User.objects.get(username=username)
+#         except:
+#             messages.error(request, "Username doesnot exist")
+
+#         user = authenticate(request, username=username, password=password)
+#         if user is not None:
+#             login(request, user)
+#             print("redirect")
+#             return redirect(request.GET['next'] if 'next' in request.GET else 'account')
+#         else:
+#             messages.error(request, "username doesnot exist")
+#     return render(request, 'login_register.html', context)
 
 
 def logoutUser(request):

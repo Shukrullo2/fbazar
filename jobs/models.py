@@ -33,7 +33,7 @@ class Job(models.Model):
 
 
 class Contract(models.Model):
-    job = models.OneToOneField(Job, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
     client = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE, related_name="Client")
     freelancer = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE, related_name="Freelancer")
     title = models.CharField(max_length=200, null=True, blank=True)
