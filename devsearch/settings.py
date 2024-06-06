@@ -97,24 +97,24 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME':  'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': '246Shukrullo',
-#         'HOST': 'database-1.cla2g0smg5j2.eu-central-1.rds.amazonaws.com',
-#         'PORT': '5432',
-
-#     }
-# }
-
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':  'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '246Shukrullo',
+        'HOST': 'database-1.cla2g0smg5j2.eu-central-1.rds.amazonaws.com',
+        'PORT': '5432',
+
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "db.sqlite3",
+#     }
+# }
 
 
 
@@ -172,7 +172,7 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-django_heroku.settings(locals())
+
 # STORAGES = {
 #     # ...
 #     "staticfiles": {
@@ -197,9 +197,9 @@ django_heroku.settings(locals())
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
-# AWS_S3_ACCESS_KEY_ID = 'AKIAZI2LFXLF2YEJWM5S'
-# AWS_S3_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'fbazaraaa'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+AWS_S3_ACCESS_KEY_ID = 'AKIAZI2LFXLF2YEJWM5S'
+AWS_S3_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'fbazaraaa'
+AWS_S3_FILE_OVERWRITE = False
+AWS_QUERYSTRING_AUTH = False
