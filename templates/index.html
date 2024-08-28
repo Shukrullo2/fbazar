@@ -38,6 +38,11 @@
           <li class="header__menuItem"><a href="account.html">My Account</a></li>
           <li class="header__menuItem"><a href="login.html" class="btn btn--sub">Login/Sign Up</a></li>
         </ul>
+        <select id="language-selector" onchange="changeLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="uz">Uzbek</option>
+          <option value="ru">Russian</option>
+      </select>
       </nav>
     </div>
   </header>
@@ -273,5 +278,26 @@
     </div>
   </main>
 </body>
+<script>
+  function loadLanguage(lang) {
+    fetch(translations[lang])
+        .then(response => response.json())
+        .then(data => {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                element.textContent = data[key];
+            });
+        })
+        .catch(error => console.error('Error loading translations:', error));
+}
+  function changeLanguage(lang) {
+      loadLanguage(lang);
+      // Optionally, store the user’s preference in localStorage or a cookie
+      localStorage.setItem('preferredLanguage', lang);
+  }
 
+  // Load the preferred language if set
+  const preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
+  loadLanguage(preferredLanguage);
+</script>
 </html>
