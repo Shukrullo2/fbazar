@@ -17,6 +17,7 @@ from django.contrib.auth.tokens import default_token_generator as account_activa
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -104,7 +105,9 @@ def registerUser(request):
         else:
             messages.error(request, "An error has occured")
     context = {'page': page, 'form': form}
-    return render(request, 'login_register.html', context)
+    # return render(request, 'login_register.html', context)
+    ext_link = 'https://forms.gle/bp3AhN8BqZAJ3AcH6'
+    return HttpResponseRedirect(ext_link)
 
 
 def setProfileType(request):
@@ -126,7 +129,7 @@ def setProfileType(request):
 def profiles(request):
     profileObj1, search_query = searchProfiles(request)
     profileObj = tuple(x for x in profileObj1 if x.user_type == 'Freelance')
-    custom_range, profileObj = paginateProfiles(request, profileObj, 3)
+    custom_range, profileObj = paginateProfiles(request, profileObj, 9)
     return render(request, 'profiles.html',
                   {'profiles': profileObj, 'search_query': search_query, 'custom_range': custom_range})
 
@@ -134,7 +137,7 @@ def profiles(request):
 def companies(request):
     companiesObj1, search_query = searchProfiles(request)
     companiesObj = tuple(x for x in companiesObj1 if x.user_type == 'Client')
-    custom_range, profileObj = paginateProfiles(request, companiesObj, 3)
+    custom_range, profileObj = paginateProfiles(request, companiesObj, 9)
     return render(request, 'companies.html',
                   {'profiles': companiesObj, 'search_query': search_query, 'custom_range': custom_range})
 
@@ -324,7 +327,8 @@ def createMessage(request, pk):
         if form.is_valid():
             messageObj = form.save(commit=False)
             messageObj.recipient = recipient
-            messageObj.attached = request.FILES['attached']
+            if messageObj.attached:
+              messageObj.attached  = request.FILES['attached']
             messageObj.sender = sender
             print(request.FILES)
             if sender:

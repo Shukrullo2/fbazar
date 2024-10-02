@@ -65,6 +65,7 @@ class ProfileForm(ModelForm):
         
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields = {key: self.fields[key] for key in self.order}
+        self.fields['user_type'].disabled = True
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'input'})
         
@@ -107,10 +108,10 @@ class CheckboxForm(forms.Form):
     type_client = forms.BooleanField(required=False, initial=False, label='I am a Client')
     def clean(self):
         cleaned_data = super().clean()
-        checkbox1 = cleaned_data.get('checkbox1')
-        checkbox2 = cleaned_data.get('checkbox2')
+        type_freelancer = cleaned_data.get('type_freelancer')
+        type_client = cleaned_data.get('type_client')
        
-        if checkbox1 and checkbox2:
+        if type_freelancer and type_client:
             raise forms.ValidationError("Select only one checkbox.")
 
         return cleaned_data

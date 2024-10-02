@@ -50,12 +50,12 @@
         </div>
         <div class="column column--2of3">
           <div class="devInfo">
-            <h3 class="devInfo__title">About Me</h3>
+            <h3 class="devInfo__title">About</h3>
             <p class="devInfo__about">
               {{profile.bio}}
             </p>
           </div>
-          {% if profile.user_type == 'freelance' %}
+          {% if profile.user_type == 'Freelance' %}
           <div class="devInfo">
             <h3 class="devInfo__title">Skills</h3>
             <div class="devInfo__skills">
@@ -127,7 +127,7 @@
                       <h3 class="project__title">{{job.title}}</h3>
                       <p><a class="project__author" href="profile.html">By {{job.owner}}o</a></p>
                       <p class="project--rating">
-                        <span style="font-weight: bold;">{{job.click_total}} </span> Clicks| <span style="font-weight: bold;">{{job.budget}}</span> | <span style="font-weight: bold;">{{job.duration}}</span>
+                        <span style="font-weight: bold;">{{job.click_total}} </span> Clicks| <span style="font-weight: bold;">{{job.budget}} soums </span> | <span style="font-weight: bold;">{{job.duration}} days</span>
                       </p>
                       <div class="project__tags">
                         {% for tag in job.tags.all %}

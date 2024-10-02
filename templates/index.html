@@ -278,18 +278,18 @@
     </div>
   </main>
 </body>
-<script>
+{% comment %} <script>
   function loadLanguage(lang) {
-    fetch(translations[lang])
-        .then(response => response.json())
-        .then(data => {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                element.textContent = data[key];
-            });
-        })
-        .catch(error => console.error('Error loading translations:', error));
-}
+      fetch(translations[lang])
+          .then(response => response.json())
+          .then(data => {
+              document.querySelectorAll('[data-translate]').forEach(element => {
+                  const key = element.getAttribute('data-translate');
+                  element.textContent = data[key];
+              });
+          })
+          .catch(error => console.error('Error loading translations:', error));
+  }
   function changeLanguage(lang) {
       loadLanguage(lang);
       // Optionally, store the user’s preference in localStorage or a cookie
@@ -299,5 +299,5 @@
   // Load the preferred language if set
   const preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
   loadLanguage(preferredLanguage);
-</script>
-</html>
+</script>{% endcomment %}
+</html> 

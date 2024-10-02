@@ -16,7 +16,7 @@ from users.forms import MessageForm
 def jobs(request):
     jobObj1, search_query = searchJobs(request)
     jobObj = tuple(x for x in jobObj1 if not x.is_assigned and x.is_active)
-    custom_range, jobObj = paginateProfiles(request, jobObj, 3)
+    custom_range, jobObj = paginateProfiles(request, jobObj, 6)
     return render(request, 'jobs.html',
                   {'jobs': jobObj, 'search_query': search_query, 'custom_range': custom_range})
    
