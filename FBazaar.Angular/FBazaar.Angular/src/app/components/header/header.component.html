@@ -1,0 +1,38 @@
+<header class="header">
+    <div class="container container--narrow">
+      <a href="/" class="header__logo">
+        <img src="../../../assets/image.png" alt="FBazaar Logo" />
+      </a>
+      <nav class="header__nav">
+        <input type="checkbox" id="responsive-menu" />
+        <label for="responsive-menu" class="toggle-menu">
+          <span>Menu</span>
+          <div class="toggle-menu__lines"></div>
+        </label>
+        <ul class="header__menu">
+          <li class="header__menuItem"><a href="/freelancers">Freelancers</a></li>
+            <li class="header__menuItem"><a href="/clients">Clients</a></li>
+          <li class="header__menuItem"><a href="/projects">Projects</a></li>
+          <li class="header__menuItem"><a href="/tasks">Tasks</a></li>
+          
+          <div *ngIf="request.user.is_authenticated; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <li class="header__menuItem"><a href="/messages">Messages</a></li>
+              <li class="header__menuItem"><a href="/account">Account</a></li>
+              <li class="header__menuItem"><a href="/logout" class="btn" >Logout</a></li>
+              <div *ngIf="request.user.profile.user_type == 'company'; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                  <li class="header__menuItem"><a href="/create-job">Create Job</a></li>
+                </ng-template>
+                <ng-template #elseBlock>
+                  <li class="header__menuItem"><a href="/create-project" >Create Project</a></li>
+                </ng-template>
+              
+            </ng-template>
+           <ng-template #elseBlock>
+            <li class="header__menuItem"><a href="/login" class="btn" >Login/Sign Up</a></li>
+           </ng-template>
+        </ul>
+      </nav>
+    </div>
+</header>
