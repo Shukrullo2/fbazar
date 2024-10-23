@@ -57,17 +57,17 @@
                     data-translate="by"
                     class="project__author"
                     href="{% url 'user_profile' item.owner.id %}"
-                    >By</a>&#160;<a
-             
+                    >By</a
+                  >&#160;<a
                     class="project__author"
                     href="{% url 'user_profile' item.owner.id %}"
-                    >{{item.owner.name}}</a>
+                    >{{item.owner.name}}</a
+                  >
                 </p>
                 <p class="project--rating">
                   <span style="font-weight: bold" data-translate="clicks">
-                    {% if item.click_total == 1 %} 1 Click {%else%} {{
-                    item.click_total}} Clicks{% endif %}</span
-                  >
+                    {% if item.click_total == 1 %} 1 Click {%else%}
+                    {{item.click_total}} Clicks{% endif %}</span>
                   |
                   <span style="font-weight: bold">{{item.budget}} soums</span> |
                   <span style="font-weight: bold">{{item.duration}} days</span>

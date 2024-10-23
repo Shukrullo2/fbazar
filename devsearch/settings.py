@@ -97,24 +97,24 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '246Shukrullo',
-        'HOST': 'database-1.cla2g0smg5j2.eu-central-1.rds.amazonaws.com',
-        'PORT': '5432',
-
-    }
-}
-
 # DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": "db.sqlite3",
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':  'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '246Shukrullo',
+#         'HOST': 'database-1.cla2g0smg5j2.eu-central-1.rds.amazonaws.com',
+#         'PORT': '5432',
+
 #     }
 # }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+    }
+}
 
 
 

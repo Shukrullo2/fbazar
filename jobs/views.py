@@ -100,7 +100,7 @@ def createTaskMessage(request, pk, sk):
     sender = request.user.profile
     form = MessageForm({
         'subject': 'Contract Assignment',
-        'body': f'Dear {recipient.name}, I have created a contract that we have recently agreed for this <a href="http://127.0.0.1:8000/jobs/job/{contract.job.id}">task</a>. \n Budget is {contract.budget} soums and you can finish it in {contract.duration}. Please find and download the contract <a href="http://127.0.0.1:8000/jobs/contract/{contract.id}">here</a>. Once you sign, the task will be assigned to you'
+        'body': f'Dear {recipient.name}, I have created a contract that we have recently agreed for this <a href="http://freelance.wiut.uz/jobs/job/{contract.job.id}">task</a>. \n Budget is {contract.budget} soums and you can finish it in {contract.duration}. Please find and download the contract <a href="http://freelance.wiut.uz/jobs/contract/{contract.id}">here</a>. Once you sign, the task will be assigned to you'
     }
     )
     if form.is_valid:
