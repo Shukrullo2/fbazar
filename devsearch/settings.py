@@ -196,10 +196,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'  # Example: simple math challenge
 
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
-AWS_S3_ACCESS_KEY_ID = 'AKIAZI2LFXLF2YEJWM5S'
-AWS_S3_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'fbazaraaa'
-AWS_S3_FILE_OVERWRITE = False
-AWS_QUERYSTRING_AUTH = False
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+# AWS_S3_ACCESS_KEY_ID = 'AKIAZI2LFXLF2YEJWM5S'
+# AWS_S3_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'fbazaraaa'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_QUERYSTRING_AUTH = False
