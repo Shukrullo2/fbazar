@@ -1,0 +1,136 @@
+{% extends 'main.html' %}
+{% load static%}
+{% block content %}
+
+<head>
+  <style>
+    .captcha {
+      width: 100px;
+      height: auto;
+    }
+  </style>
+</head>
+
+{% if page == 'register' %}
+
+
+<div class="auth">
+      <div class="card">
+        <div class="auth__header text-center">
+          <a href="/">
+            <img src="{% static 'images/icon.svg' %}" alt="icon" />
+          </a>
+          <h3>Account SignUp</h3>
+          <p>Create a new developer account</p>
+        </div>
+        <form method="POST" action="{% url 'register'%}" class="form auth__form">
+          {% csrf_token %}
+
+          {% for field in form %}
+          <div class="form__field">
+            <label for="formInput#text">{{field.label}}: </label>
+            {{field}}
+<!--            {% if field.help_text %}-->
+<!--            <small>{{field.help_text}}</small>-->
+<!--            {%endif%}-->
+          {% for error in field.errors %}
+            <p style="color:#c4171b;">{{error}}</p>
+            {% endfor %}
+
+          </div>
+          {% endfor %}
+          {{checkboxform.as_p}}
+         
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="user_agreement" name="user_agreement">
+            <label class="form-check-label" for="user_agreement">I agree with "Freelance Bazar's User Agreement" for 
+              <a href="{%url "user-agreement" 'Client' %}"  target="_blank">Clients</a> and <a href="{%url "user-agreement" 'Freelance'%}"  target="_blank">Freelancers</a>
+            </label>
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" id='submit-btn' type="submit" value="Sign Up" disabled/>
+        </div>
+          {% comment %} <p class='color: red;'>
+            By creating the user account you agree and sign "Freelance Bazar's User Agreement" for 
+            <a href="{%url "user-agreement" 'Client' %}"  target="_blank">Clients</a> and <a href="{%url "user-agreement" 'Freelance'%}"  target="_blank">Freelancers</a>
+          </p>   {% endcomment %}
+        </form>
+        <div class="auth__alternative">
+          <p>Already have an Account?</p>
+          <a href="{% url 'login'%}">Log In</a>
+        </div>
+       
+      </div>
+
+    
+{% else %}
+
+
+
+<div class="auth">
+      <div class="card">
+        <div class="auth__header text-center">
+          <a href="/">
+            <img src="{% static 'images/icon.svg' %}" alt="icon" />
+          </a>
+          <h3>Account Login</h3>
+          <p>Hello Developer, Welcome Back!</p>
+        </div>
+
+        <form action="" method="POST" class="form auth__form">
+          <!-- Input:Username -->
+            {% csrf_token %}
+          {% comment %} <div class="form__field">
+            <label for="formInput#text">Username: </label>
+            <input
+              class="input input--text"
+              id="formInput#text"
+              type="text"
+              name="username"
+              placeholder="Enter your username..."
+            />
+          </div>
+
+          <!-- Input:Password -->
+          <div class="form__field">
+            <label for="formInput#password">Password: </label>
+            <input
+              class="input input--password"
+              id="formInput#passowrd"
+              type="password"
+              name="password"
+              placeholder="••••••••"
+            />
+          </div>
+          <div class="auth__actions">
+            <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+            <a href="{% url 'reset_password'%}">Forget Password?</a>
+          </div> {% endcomment %}
+
+          {% for field in form %}
+          <div class="form__field">
+            <label for="formInput#text">{{field.label}}: </label> 
+            {{field}}
+          </div>
+            {% endfor %}
+
+          <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+          <a href="{% url 'reset_password'%}">Forget Password?</a>
+        </form>
+        <div class="auth__alternative">
+          <p>Don’t have an Account?</p>
+          <a href="{% url 'register'%} ">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+{% endif %}
+
+<script>
+  document.getElementById('user_agreement').addEventListener('change', function() {
+    document.getElementById('submit-btn').disabled = !this.checked;});
+</script>
+ 
+
+
+{% endblock content %}

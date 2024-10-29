@@ -1,0 +1,104 @@
+@import '../../../theme/variables.scss';
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-container {
+    width: 100%;
+    padding: 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    border-top: 1px solid $grey-7;
+}
+
+.links-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+}
+
+.link-group {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: $text-secondary;
+    font-weight: 600;
+    font-family: onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 24px;
+}
+
+.primary-link {
+    padding: 12px 0;
+    text-decoration: none;
+    color: $text-primary;
+    font-weight: 600;
+    font-family: onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 24px;
+}
+
+.secondary-link {
+    text-decoration: none;
+    color: $text-primary;
+    font-weight: 500;
+    font-family: onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 24px;
+}
+
+.line {
+    height: 1px;
+    background-color: $grey-7;
+}
+
+.site-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    color: $text-primary;
+    font-weight: 500;
+}
+
+.company-name {
+    color: $text-primary;
+    font-family: onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.designer {
+    display: flex;
+    align-items: center;
+    color: $text-primary;
+    font-weight: 600;
+    font-family: onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 24px;
+}
+

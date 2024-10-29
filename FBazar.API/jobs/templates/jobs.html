@@ -1,0 +1,117 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<!-- Main Section -->
+<main class="projects">
+  <section class="hero-section text-center" style="background: None">
+    <div class="container container--narrow">
+      <div class="hero-section__box">
+        <h2 data-translate="searchTitle">Search <span>Tasks</span></h2>
+      </div>
+
+      <div class="hero-section__search">
+        <form class="form" action="{% url 'jobs' %}" method="get" method="get">
+          <div class="form__field">
+            <label data-translate="searchLabel" for="formInput#search"
+              >Proyekt bo'yicha qidirish
+            </label>
+            <input
+              class="input input--text"
+              id="formInput#search"
+              type="text"
+              name="search_query"
+              placeholder="Search"
+              value="{{search_query}}"
+              data-translate="formInput"
+            />
+          </div>
+
+          <input
+            class="btn btn--sub btn--lg"
+            type="submit"
+            value="Search"
+            data-translate="searchButton"
+          />
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Result: DevList -->
+
+  <section class="projectsList">
+    <div class="container">
+      <div class="grid grid--three">
+        {% for item in jobs %}
+        <div class="column">
+          <div class="card project">
+            <a href="{% url 'job' item.id %}" class="project">
+              <img
+                class="project__thumbnail"
+                src="{% if item.featured_image %}{{item.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}"
+                alt="project thumbnail"
+              />
+              <div class="card__body">
+                <h3 class="project__title">{{item.title}}</h3>
+                <p>
+                  <a
+                    data-translate="by"
+                    class="project__author"
+                    href="{% url 'user_profile' item.owner.id %}"
+                    >By</a>&#160;<a
+             
+                    class="project__author"
+                    href="{% url 'user_profile' item.owner.id %}"
+                    >{{item.owner.name}}</a>
+                </p>
+                <p class="project--rating">
+                  <span style="font-weight: bold" data-translate="clicks">
+                    {% if item.click_total == 1 %} 1 Click {%else%} {{
+                    item.click_total}} Clicks{% endif %}</span
+                  >
+                  |
+                  <span style="font-weight: bold">{{item.budget}} soums</span> |
+                  <span style="font-weight: bold">{{item.duration}} days</span>
+                </p>
+                <div class="project__tags">
+                  {% for tag in item.tags.all %}
+                  <span class="tag tag--pill tag--main">
+                    <small>{{tag}}</small>
+                  </span>
+                  {%endfor%}
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {%endfor %}
+      </div>
+    </div>
+  </section>
+  {% include 'pagination.html' with queryset=pl custom_range=custom_range%}
+  <script>
+    function loadLanguage(lang) {
+      fetch(translations[lang])
+        .then((response) => response.json())
+        .then((data) => {
+          document.querySelectorAll("[data-translate]").forEach((element) => {
+            const key = element.getAttribute("data-translate");
+            element.textContent = data[key];
+          });
+        })
+        .catch((error) => console.error("Error loading translations:", error));
+    }
+    function changeLanguage(lang) {
+      loadLanguage(lang);
+      // Optionally, store the user’s preference in localStorage or a cookie
+      localStorage.setItem("preferredLanguage", lang);
+    }
+
+    // Load the preferred language if set
+    const preferredLanguage = localStorage.getItem("preferredLanguage") || "en";
+    loadLanguage(preferredLanguage);
+  </script>
+  <script src="{% static 'js/script.js' %}"></script>
+</main>
+
+{% endblock content%}
