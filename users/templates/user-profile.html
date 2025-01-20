@@ -52,7 +52,7 @@
           <div class="devInfo">
             <h3 class="devInfo__title">About</h3>
             <p class="devInfo__about">
-              {{profile.bio}}
+              {{profile.bio|linebreaksbr}}
             </p>
           </div>
           {% if profile.user_type == 'Freelance' %}

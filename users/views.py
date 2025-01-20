@@ -129,6 +129,8 @@ def setProfileType(request):
 def profiles(request):
     profileObj1, search_query = searchProfiles(request)
     profileObj = tuple(x for x in profileObj1 if x.user_type == 'Freelance')
+    for profile in profileObj:
+        print(profile.name,profile.user_type)
     custom_range, profileObj = paginateProfiles(request, profileObj, 9)
     return render(request, 'profiles.html',
                   {'profiles': profileObj, 'search_query': search_query, 'custom_range': custom_range})

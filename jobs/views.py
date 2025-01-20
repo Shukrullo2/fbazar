@@ -183,6 +183,7 @@ def clicks(request, pk):
     return render(request, 'clicks.html', context)
 
 
+
 def assignJob(request, pk, sk):
     job=Job.objects.get(id=pk)
     profile = Profile.objects.get(id=sk)
@@ -208,4 +209,6 @@ def changeJobStatus(request, pk):
         job.is_active = True
         job.save()
     return redirect('account')
+
+
 
